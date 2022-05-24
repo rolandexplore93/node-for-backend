@@ -7,3 +7,5 @@ Nodejs, written with C++ wrapped google v8 engine that it uses to convert javasc
 2. [global](/global.js)
 3. [modules](/modules.js)
 4. [people](/people.js)
+5. [files](/files.js)
+6. [streams & buffer](/streams.js)
