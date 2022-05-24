@@ -7,4 +7,3 @@ const greetings = (username) => {
 }
 greetings("Roland")
 greetings("Orobola")
-

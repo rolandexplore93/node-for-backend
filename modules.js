@@ -13,6 +13,6 @@ const {people, ages} = require('./people')  //destructing exports
 // this value of module.export will be accessible
 
 
-// Modules in nodejs- OS modules
+// Modules in nodejs OS modules
 const os = require('os')
 console.log(os.platform(), os.homedir())
