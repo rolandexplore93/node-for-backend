@@ -1,0 +1,25 @@
+{
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "backend",
+  "description": "Nodejs, written with C++ wrapped google v8 engine that it uses to convert javascript to machine code (machine codes are complex to write or read just like binary) for the computer/server to understand and interpret.",
+  "version": "1.0.0",
+  "main": "files.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rolandexplore93/node-for-backend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rolandexplore93/node-for-backend/issues"
+  },
+  "homepage": "https://github.com/rolandexplore93/node-for-backend#readme",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
+}

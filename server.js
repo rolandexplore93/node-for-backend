@@ -1,9 +1,25 @@
 const http = require('http')
 const fs = require('fs')
+const _ = require('lodash');
 // console.log(http)  // Listed out HTTP methods and status codes
 
 const server = http.createServer((request, response) => {
     console.log(request.url, request.method)
+
+    //lodash library (_) to get a random number
+    const randomno = Math.trunc(_.random(0, 10, true))
+    console.log(randomno)
+    //lodash once to load a function once and ignore repetitive calls
+    const greetUser = _.once(
+        () => {
+            console.log(`Hello User, welcome!`)
+        }
+    ) 
+
+    greetUser()
+    greetUser()
+    greetUser()
+
 
     //set header content type
     response.setHeader('Content-Type', 'text/html'); //html file
@@ -19,7 +35,7 @@ const server = http.createServer((request, response) => {
             path += 'about.html';
             response.statusCode = 200;
             break;
-        case '/about-me':
+        case '/about-us':
             response.statusCode = 301;
             response.setHeader('Location', '/about')
             response.end()
