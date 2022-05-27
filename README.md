@@ -13,4 +13,4 @@ Nodejs, written with C++ wrapped google v8 engine that it uses to convert javasc
     - nodemon: Automatically restarts the server whenever there is a change made in the server
     - [lodash](https://lodash.com/): An utility library. I practiced randon number and once() function
     - npm and dependencies
-8. [express server](/app.js)
+8. [express server using ejs template engine](/app.js)
