@@ -20,15 +20,17 @@ app.get('/', function (req, res) {
 // listen to a GET request to about page
 app.get('/about', (req, res) => {
     // res.sendFile('./views/about.html', { root: __dirname})
+    res.render('about')
 })
 
 // redirects
 app.get('/about-us', (req, res) => {
-    // res.redirect('/about')
+    res.redirect('/about')
 })
 
 // error page if path does not exist
 // app.use() is used to create middleware and fire middleware functions
 app.use((req, res) => {
-    res.sendFile('./views/404.html', { root: __dirname})
+    // res.status(404).sendFile('./views/404.html', { root: __dirname})
+    res.status(404).render('404')
 })
