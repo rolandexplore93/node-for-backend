@@ -1,22 +1,7 @@
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homepage | <%= title %> </title>
-</head>
+<%- include('./partials/head.ejs') %>
 <body>
-    <nav>
-        <div class="site-title">
-            <a href="/">Blogger Gist</a>
-            <p>Our Blog Site</p>
-        </div>
-        <ul>
-            <li><a href="/">Blogs</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/blogs/create">New Blog Post</a></li>
-        </ul>
-    </nav>
+    <%- include('./partials/nav.ejs') %>
 
     <div class="blogs content">
         <h2>All Blogs</h2>
@@ -29,6 +14,9 @@
             <h3>No Blog Found!</h3>
         <% } %>
     </div>
+
+    <%- include('./partials/footer.ejs') %>
+
     
 </body>
 </html>
