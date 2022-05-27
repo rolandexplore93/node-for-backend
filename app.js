@@ -10,12 +10,12 @@ app.listen(3000);   //this return an instance of the server
 app.get('/', function (req, res) {
     // res.send() also infers the status code
     // res.send('Hello World')   //res.send() detects the Content-Type header and send the content
-    res.sendFile('./views/index.html', { root: __dirname})
+    res.sendFile('./view/index.html', { root: __dirname})
 })
 
 // listen to a GET request to about page
 app.get('/about', (req, res) => {
-    res.sendFile('./views/about.html', { root: __dirname})
+    res.sendFile('./view/about.html', { root: __dirname})
 })
 
 // redirects
@@ -26,5 +26,5 @@ app.get('/about-us', (req, res) => {
 // error page if path does not exist
 // app.use() is used to create middleware and fire middleware functions
 app.use((req, res) => {
-    res.sendFile('./views/404.html', { root: __dirname})
+    res.status(404).sendFile('./view/404.html', { root: __dirname})
 })
