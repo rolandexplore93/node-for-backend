@@ -3,6 +3,9 @@ const express = require('express')
 // express app
 const app = express()
 
+// configure ejs view engine (This should be done at the top after initializing express app)
+app.set('view engine', 'ejs')
+
 // listen for request
 app.listen(3000);   //this return an instance of the server
 
@@ -10,17 +13,18 @@ app.listen(3000);   //this return an instance of the server
 app.get('/', function (req, res) {
     // res.send() also infers the status code
     // res.send('Hello World')   //res.send() detects the Content-Type header and send the content
-    res.sendFile('./views/index.html', { root: __dirname})
+    // res.sendFile('./views/index.html', { root: __dirname})
+    res.render('index');   //rendering in ejs
 })
 
 // listen to a GET request to about page
 app.get('/about', (req, res) => {
-    res.sendFile('./views/about.html', { root: __dirname})
+    // res.sendFile('./views/about.html', { root: __dirname})
 })
 
 // redirects
 app.get('/about-us', (req, res) => {
-    res.redirect('/about')
+    // res.redirect('/about')
 })
 
 // error page if path does not exist
