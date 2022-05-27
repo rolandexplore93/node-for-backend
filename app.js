@@ -24,8 +24,8 @@ app.get('/about', (req, res) => {
 })
 
 // redirects
-app.get('/about-us', (req, res) => {
-    res.redirect('/about')
+app.get('/blogs/create', (req, res) => {
+    res.render('create')
 })
 
 // error page if path does not exist
