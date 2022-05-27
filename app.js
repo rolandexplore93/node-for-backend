@@ -17,7 +17,7 @@ app.get('/', function (req, res) {
 
     const blogs = [
         {title: "PSG signs Messi", snippet: "lorem lorem lorem lorem lorem lorem"},
-        {title: "Real Madrid win UCL", snippet: "lorem lorem lorem lorem lorem lorem"},
+        {title: "Real Madrid wins UCL", snippet: "lorem lorem lorem lorem lorem lorem"},
         {title: "Messi wins WC for Argentina", snippet: "lorem lorem lorem lorem lorem lorem"},
     ]
     res.render('index', { title: "Blogger Gist", blogs });   //rendering in ejs
