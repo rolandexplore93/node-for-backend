@@ -1,7 +1,7 @@
 const express = require('express')
 const morgan = require('morgan')
 const mongoose = require('mongoose')
-
+const Blog = require('./models/blog')
 // express app
 const app = express()
 
@@ -34,6 +34,46 @@ app.set('view engine', 'ejs')
 app.use(express.static('public'));
 app.use(morgan('dev'));
 // app.use(morgan('tiny'));
+
+// mongoose and mongo sandbox routes
+app.get('/add-blog', (req, res) => {
+    // create a new instance of a blog using the Blog constructor
+    const blog = new Blog({
+        // diff properties of the blog should ne specified as created in the schema
+        // Do not add the timestamps as mongoose will take care of that automatically
+        title: 'new blog',
+        snippet: 'about my new blog',
+        body: 'more about my blog'
+    });
+
+    // save to blog collection in database
+    blog.save()
+        .then((result) => {
+            res.send(result)
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+})
+
+// retrieve all blog data from database
+app.get('/all-blogs', (req, res) => {
+    Blog.find()
+        .then((result) => {
+            res.send(result)
+        })
+        .catch(err => {console.log(err)})
+})
+
+// find a single blog
+app.get('/single-blog', (req, res) => {
+    Blog.findById('6291e56d6947e2f843db1020')   // id of one of the blogs in the database
+        .then((result) => {
+            res.send(result)
+        })
+        .catch(err => {console.log(err)})
+})
+
 
 // listen to a GET request to homepage
 app.get('/', function (req, res) {
