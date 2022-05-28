@@ -32,6 +32,7 @@ app.set('view engine', 'ejs')
 // use morgan('dev or tiny') instead of custom middle
 // middleware and static files
 app.use(express.static('public'));
+app.use(express.urlencoded({ extended: true}))
 app.use(morgan('dev'));
 // app.use(morgan('tiny'));
 
@@ -110,6 +111,19 @@ app.get('/blogs', (req, res) => {
             res.render('index', { title: 'All Blogs', blogs: result})
         })
         .catch( err => console.log(err))
+})
+
+// POST request to store data to the database
+app.post('/blogs', (req, res) => {
+    console.log(req.body);
+
+    // create a new blog instance
+    const blog = new Blog(req.body)
+    blog.save()
+        .then(result => {
+            res.redirect('/blogs')
+        })
+        .catch(err => console.log(err))
 })
 
 app.get('/blogs/create', (req, res) => {
