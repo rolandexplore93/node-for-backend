@@ -35,44 +35,44 @@ app.use(express.static('public'));
 app.use(morgan('dev'));
 // app.use(morgan('tiny'));
 
-// mongoose and mongo sandbox routes
-app.get('/add-blog', (req, res) => {
-    // create a new instance of a blog using the Blog constructor
-    const blog = new Blog({
-        // diff properties of the blog should ne specified as created in the schema
-        // Do not add the timestamps as mongoose will take care of that automatically
-        title: 'new blog',
-        snippet: 'about my new blog',
-        body: 'more about my blog'
-    });
+// // mongoose and mongo sandbox routes
+// app.get('/add-blog', (req, res) => {
+//     // create a new instance of a blog using the Blog constructor
+//     const blog = new Blog({
+//         // diff properties of the blog should ne specified as created in the schema
+//         // Do not add the timestamps as mongoose will take care of that automatically
+//         title: 'new blog',
+//         snippet: 'about my new blog',
+//         body: 'more about my blog'
+//     });
 
-    // save to blog collection in database
-    blog.save()
-        .then((result) => {
-            res.send(result)
-        })
-        .catch((err) => {
-            console.log(err)
-        })
-})
+//     // save to blog collection in database
+//     blog.save()
+//         .then((result) => {
+//             res.send(result)
+//         })
+//         .catch((err) => {
+//             console.log(err)
+//         })
+// })
 
 // retrieve all blog data from database
-app.get('/all-blogs', (req, res) => {
-    Blog.find()
-        .then((result) => {
-            res.send(result)
-        })
-        .catch(err => {console.log(err)})
-})
+// app.get('/all-blogs', (req, res) => {
+//     Blog.find()
+//         .then((result) => {
+//             res.send(result)
+//         })
+//         .catch(err => {console.log(err)})
+// })
 
 // find a single blog
-app.get('/single-blog', (req, res) => {
-    Blog.findById('6291e56d6947e2f843db1020')   // id of one of the blogs in the database
-        .then((result) => {
-            res.send(result)
-        })
-        .catch(err => {console.log(err)})
-})
+// app.get('/single-blog', (req, res) => {
+//     Blog.findById('6291e56d6947e2f843db1020')   // id of one of the blogs in the database
+//         .then((result) => {
+//             res.send(result)
+//         })
+//         .catch(err => {console.log(err)})
+// })
 
 
 // listen to a GET request to homepage
@@ -81,12 +81,15 @@ app.get('/', function (req, res) {
     // res.send('Hello World')   //res.send() detects the Content-Type header and send the content
     // res.sendFile('./views/index.html', { root: __dirname})
 
-    const blogs = [
-        {title: "PSG signs Messi", snippet: "lorem lorem lorem lorem lorem lorem"},
-        {title: "Real Madrid wins UCL", snippet: "lorem lorem lorem lorem lorem lorem"},
-        {title: "Messi wins WC for Argentina", snippet: "lorem lorem lorem lorem lorem lorem"},
-    ]
-    res.render('index', { title: "Blogger Gist", blogs });   //rendering in ejs
+
+    res.redirect('/blogs')
+
+    // const blogs = [
+    //     {title: "PSG signs Messi", snippet: "lorem lorem lorem lorem lorem lorem"},
+    //     {title: "Real Madrid wins UCL", snippet: "lorem lorem lorem lorem lorem lorem"},
+    //     {title: "Messi wins WC for Argentina", snippet: "lorem lorem lorem lorem lorem lorem"},
+    // ]
+    // res.render('index', { title: "Blogger Gist", blogs });   //rendering in ejs
 })
 
 // app.use((req, res, next) => {
@@ -98,6 +101,15 @@ app.get('/', function (req, res) {
 app.get('/about', (req, res) => {
     // res.sendFile('./views/about.html', { root: __dirname})
     res.render('about', { title: "Blogger Gist" })
+})
+
+// create blog routes to display all blogs from database. NB: redirect homepage to /blogs
+app.get('/blogs', (req, res) => {
+    Blog.find().sort({ createdAt: -1})
+        .then(result => {
+            res.render('index', { title: 'All Blogs', blogs: result})
+        })
+        .catch( err => console.log(err))
 })
 
 app.get('/blogs/create', (req, res) => {
