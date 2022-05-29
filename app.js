@@ -126,8 +126,20 @@ app.post('/blogs', (req, res) => {
         .catch(err => console.log(err))
 })
 
+
 app.get('/blogs/create', (req, res) => {
     res.render('create', { title: "Create a New Blog" })
+})
+
+// single route
+app.get('/blogs/:id', (req, res, next) => {
+    const id = req.params.id;
+    Blog.findById(id).then(result => {
+        res.render('details', { title: "Blog Details", blog: result })
+    })
+    .catch(err => console.log(err))
+
+    // next();
 })
 
 // error page if path does not exist
