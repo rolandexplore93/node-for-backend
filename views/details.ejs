@@ -12,6 +12,28 @@
     </div>
     
     <%- include('./partials/footer.ejs') %>
+
+    <script>
+        const deleteBlog = document.querySelector('a.delete');
+        console.log(deleteBlog)
+
+        deleteBlog.addEventListener('click', (e) => {
+            const endpoint = `/blogs/${deleteBlog.dataset.doc}`
+
+            // Make an ajax request
+            // When an ajax request is sent to the server; in nodejs, redirect cannot be used as a response.
+            // You have to send a JSON or text data back that will have a 'redirect property' to the browser
+            fetch(endpoint, {
+                method: "DELETE"
+            })
+            .then((response) => response.json())
+            .then(data => {
+                console.log(data);
+                window.location.href = data.redirect
+            })
+            .catch(err => console.log(err))
+        })
+    </script>
     
 </body>
 </html>

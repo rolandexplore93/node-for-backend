@@ -132,14 +132,21 @@ app.get('/blogs/create', (req, res) => {
 })
 
 // single route
-app.get('/blogs/:id', (req, res, next) => {
+app.get('/blogs/:id', (req, res) => {
     const id = req.params.id;
     Blog.findById(id).then(result => {
         res.render('details', { title: "Blog Details", blog: result })
     })
     .catch(err => console.log(err))
 
-    // next();
+})
+
+app.delete('/blogs/:id', (req, res) => {
+    const id = req.params.id;
+    Blog.findByIdAndDelete(id)
+    .then((result) => {
+        res.json({ redirect: '/blogs'})
+    })
 })
 
 // error page if path does not exist
