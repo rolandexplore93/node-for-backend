@@ -10,7 +10,8 @@
                 <div class="blog-wrapper">
                     <a class="single" href="/blogs/<%= blog._id %>">
                         <h3 class="title"><%= blog.title %></h3>
-                        <p class="snippet"><%= blog.snippet %></p>
+                        <p class="snippet">Snippet: <%= blog.snippet %></p> <br />
+                        <p><%= blog.body %></p>
                     </a>
                 </div>
             <% }) %>

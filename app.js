@@ -1,7 +1,7 @@
 const express = require('express')
 const morgan = require('morgan')
 const mongoose = require('mongoose')
-const Blog = require('./models/blog')
+const blogRoutes = require('./routes/blogRoutes')
 // express app
 const app = express()
 
@@ -104,50 +104,8 @@ app.get('/about', (req, res) => {
     res.render('about', { title: "Blogger Gist" })
 })
 
-// create blog routes to display all blogs from database. NB: redirect homepage to /blogs
-app.get('/blogs', (req, res) => {
-    Blog.find().sort({ createdAt: -1})
-        .then(result => {
-            res.render('index', { title: 'All Blogs', blogs: result})
-        })
-        .catch( err => console.log(err))
-})
-
-// POST request to store data to the database
-app.post('/blogs', (req, res) => {
-    console.log(req.body);
-
-    // create a new blog instance
-    const blog = new Blog(req.body)
-    blog.save()
-        .then(result => {
-            res.redirect('/blogs')
-        })
-        .catch(err => console.log(err))
-})
-
-
-app.get('/blogs/create', (req, res) => {
-    res.render('create', { title: "Create a New Blog" })
-})
-
-// single route
-app.get('/blogs/:id', (req, res) => {
-    const id = req.params.id;
-    Blog.findById(id).then(result => {
-        res.render('details', { title: "Blog Details", blog: result })
-    })
-    .catch(err => console.log(err))
-
-})
-
-app.delete('/blogs/:id', (req, res) => {
-    const id = req.params.id;
-    Blog.findByIdAndDelete(id)
-    .then((result) => {
-        res.json({ redirect: '/blogs'})
-    })
-})
+// blog routes
+app.use('/blogs', blogRoutes)
 
 // error page if path does not exist
 // app.use() is used to create middleware and fire middleware functions
