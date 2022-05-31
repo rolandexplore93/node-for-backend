@@ -60,5 +60,15 @@ Operators in mongoDB are denoted by $.
 
 > e.g db.books.find({rating: {$gt: 7}})
 
-* `'or' operator` is used to find document whereby a field value is either one value or another value. \
+* `'$or' operator` is used to find document whereby a field value is either one value or another value. \
 db.books.find({$or: [ {rating: 7}, {rating: 8}, {rating: 9}, {pages: 400} ] })
+
+* `'$in' operator` means that a particular field will be within a certain range of value. This is similar to `$in operator` but it's easier and shorter to write than `$in`
+db.books.find({rating: {$in: [7, 8, 9]} })
+
+* `'$nin' not-in-operator` means that a particular field will not be within a certain range of value specified. This is opposite to `'$in' operator`
+db.books.find({rating: {$nin: [7, 8, 9]} })
+
+### Querying Array using *filtering approach
+* Without []: e.g; db.books.find({genres: "magic"})  will return genres property items that include "magic"
+* With []: e.g; db.books.find({genres: ["magic"]})  will return genres property items that only include "magic". [] means EXACT match here
