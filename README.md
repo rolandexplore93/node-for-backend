@@ -27,10 +27,27 @@ Installation: MongoDB can be installed
 MongoDB compass server was download from MongoDB website and installed on my local machine. Inside the server, you can create a database collection and documents to it. You can also perform various operations like create, read, update and delete.
 
 ### MongoDB Shell commands
-* show database: show dbs
-* switch to a db: use database-name  (e.g use bookstore)
-* clear screen: cls
-* current database: db
-* show all collections: show collections
-* start the shell: mongosh
-* exit the shell: exit
+* show database: `show dbs`
+* switch to a db: use database-name  (e.g `use bookstore`)
+* clear screen: `cls`
+* current database: `db`
+* show all collections: `show collections`
+* start the shell: `mongosh`
+* exit the shell: `exit`
+
+### Using MongoDB Shell to perform CRUD operations and interact with the database
+* insertOne({})
+* insertMany([{}, {}, {}])
+* find()
+* filter: find({property: value})
+* find({}, {second arg})   | The second argument will only display the exact properties we specified in the collections populated
+* findOne({})
+* count()
+* sort({})
+* limit()
+
+### Nested documents
+* E.g for 1 document ===> db.books.insertOne({title: "RollyJS", author: "Roland"}, rating: 20, review: [{name: "Fash", comment: "Great Book"}, {name: "FashyNET", comment: "Great Documentation"}])
+* E.g for multiple documents ===> db.books.insertMany([ { title: "RollyJS", author: "Roland", rating: 20, review: [{name: "Fash", comment: "Great Book"},   { title: "RollyJS", author: "Roland", rating: 20, review: [{name: "Fash", comment: "Great Book"}])
+
+
