@@ -16,7 +16,8 @@ Nodejs, written with C++ wrapped google v8 engine that it uses to convert javasc
 9. [moogoose models](/models)
 
 > # DATABASE | MongoDB
-* 31/05/2022
+*  > 31/05/2022
+
 MongoDB is a NoSQL database that uses collections and documents to store records of data.
 
 Installation: MongoDB can be installed
@@ -50,4 +51,14 @@ MongoDB compass server was download from MongoDB website and installed on my loc
 * E.g for 1 document ===> db.books.insertOne({title: "RollyJS", author: "Roland"}, rating: 20, review: [{name: "Fash", comment: "Great Book"}, {name: "FashyNET", comment: "Great Documentation"}])
 * E.g for multiple documents ===> db.books.insertMany([ { title: "RollyJS", author: "Roland", rating: 20, review: [{name: "Fash", comment: "Great Book"},   { title: "RollyJS", author: "Roland", rating: 20, review: [{name: "Fash", comment: "Great Book"}])
 
+### Operators & Complex Queries
+Operators in mongoDB are denoted by $.
+* `$gt -> greater than`
+* `$gte -> greater than or equal to`
+* `$lt -> less than`
+* `$lte -> less than or equal to`
 
+> e.g db.books.find({rating: {$gt: 7}})
+
+* `'or' operator` is used to find document whereby a field value is either one value or another value. \
+db.books.find({$or: [ {rating: 7}, {rating: 8}, {rating: 9}, {pages: 400} ] })
