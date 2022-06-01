@@ -101,3 +101,9 @@ db.books.find({ genres: { $all: ["fantasy", "sci-fi"] } })
 ### $each operator - to add or remove different multiple items
 * db.books.updateOne({id of doc}, { $push: {genres: {$each: ["Soccer", "globe", 51] } } })
 
+## MONGODB DRIVER
+Each programming language has its driver that is compatible with MongoDB. For instance, Nodejs Driver bridges the gap between nodejs and mongodb.
+> Setup - create a newfolder at the root level (nodeAPI)
+* npm init, install express
+* In App.js: const app =  express() | app.listen(3000, ()=>{console.log("Server is working at port 3000")})
+* Create a route: app.get('/', (req, res) => {res.json({mssg: "Activating a Driver to create a nodejs API that communicate with mongoDB "})})
