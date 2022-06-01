@@ -94,3 +94,10 @@ db.books.find({ genres: { $all: ["fantasy", "sci-fi"] } })
 ### $inc operator - to increment or decrement a property value
 * db.books.updateOne({id of doc}, { $inc: {pages: -2, rating: 2} })
 
+### $pull and $push operator - to remove and add a value
+* db.books.updateOne({id of doc}, { $pull: {genres: "fanty"} })
+* db.books.updateOne({id of doc}, { $push: {genres: ["fanty"]} })
+
+### $each operator - to add or remove different multiple items
+* db.books.updateOne({id of doc}, { $push: {genres: {$each: ["Soccer", "globe", 51] } } })
+
