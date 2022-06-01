@@ -16,8 +16,8 @@ Nodejs, written with C++ wrapped google v8 engine that it uses to convert javasc
 9. [moogoose models](/models)
 
 > # DATABASE | MongoDB
-*  > 31/05/2022
-
+> 31/05/2022
+---
 MongoDB is a NoSQL database that uses collections and documents to store records of data.
 
 Installation: MongoDB can be installed
@@ -51,6 +51,9 @@ MongoDB compass server was download from MongoDB website and installed on my loc
 * E.g for 1 document ===> db.books.insertOne({title: "RollyJS", author: "Roland"}, rating: 20, review: [{name: "Fash", comment: "Great Book"}, {name: "FashyNET", comment: "Great Documentation"}])
 * E.g for multiple documents ===> db.books.insertMany([ { title: "RollyJS", author: "Roland", rating: 20, review: [{name: "Fash", comment: "Great Book"},   { title: "RollyJS", author: "Roland", rating: 20, review: [{name: "Fash", comment: "Great Book"}])
 
+* Dot notation (.) is used to access inner-nested documents
+db.books.find({ "reviews.name": "Luigi"})
+
 ### Operators & Complex Queries
 Operators in mongoDB are denoted by $.
 * `$gt -> greater than`
@@ -60,15 +63,34 @@ Operators in mongoDB are denoted by $.
 
 > e.g db.books.find({rating: {$gt: 7}})
 
-* `'$or' operator` is used to find document whereby a field value is either one value or another value. \
+* `$or operator` is used to find document whereby a field value is either one value or another value. \
 db.books.find({$or: [ {rating: 7}, {rating: 8}, {rating: 9}, {pages: 400} ] })
 
-* `'$in' operator` means that a particular field will be within a certain range of value. This is similar to `$in operator` but it's easier and shorter to write than `$in`
+* `$in operator` means that a particular field will be within a certain range of value. This is similar to `$in operator` but it's easier and shorter to write than `$in`
 db.books.find({rating: {$in: [7, 8, 9]} })
 
-* `'$nin' not-in-operator` means that a particular field will not be within a certain range of value specified. This is opposite to `'$in' operator`
+* `$nin not-in-operator` means that a particular field will not be within a certain range of value specified. This is opposite to `'$in' operator`
 db.books.find({rating: {$nin: [7, 8, 9]} })
 
 ### Querying Array using *filtering approach
 * Without []: e.g; db.books.find({genres: "magic"})  will return genres property items that include "magic"
 * With []: e.g; db.books.find({genres: ["magic"]})  will return genres property items that only include "magic". [] means EXACT match here
+
+---
+> **01/June/2022**
+---
+* `$all operator` is used to check an array field to see if all the specified items are inside the array. \
+db.books.find({ genres: { $all: ["fantasy", "sci-fi"] } })
+
+### Delete Documents
+* db.books.deleteOne({ _id: ObjectId("dhhd4c4d")})  ==> delete one document
+* db.books.deleteMany({author: "Terry Toshi"})   ==> delete all book collections that belongs to the author name mention.
+
+### Update Document
+* db.books.updateOne({arg1 - the id of the doc to update}, {arg2 - the field to update using $set operator})
+* db.books.updateOne({id}, { $set: { rating: 8, pages: 400 } })
+* db.books.updateMany({author: "Terry Pathy"}, { $set: { rating: 8, pages: 400 } })
+
+### $inc operator - to increment or decrement a property value
+* db.books.updateOne({id of doc}, { $inc: {pages: -2, rating: 2} })
+
