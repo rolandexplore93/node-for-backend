@@ -109,3 +109,13 @@ Each programming language has its driver that is compatible with MongoDB. For in
 * npm init, install express
 * In App.js: const app =  express() | app.listen(3000, ()=>{console.log("Server is working at port 3000")})
 * Create a route: app.get('/', (req, res) => {res.json({mssg: "Activating a Driver to create a nodejs API that communicate with mongoDB "})})
+
+---
+> **02/June/2022**
+---
+### Connect nodejs to mongodb database and return the database connection for usage
+These mongodb packages were used;
+* MongoClient() - Allow connection to the database
+* connect(url) - Used with MongoClient to connect to the database
+* db("db-name") - To return back different connection
+* collection("collection-name") - To reference specific collection in the database
