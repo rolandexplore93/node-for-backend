@@ -119,3 +119,12 @@ These mongodb packages were used;
 * connect(url) - Used with MongoClient to connect to the database
 * db("db-name") - To return back different connection
 * collection("collection-name") - To reference specific collection in the database
+* ObjectId(id)
+
+**Challenge encountered when connecting to db using mongodb-localhost address: mongodb://localhost:27017 didn't work. So, it was changed to mongodb://127.0.0.1:27017 and it worked perfectly**
+
+![mdb-driver-appjs](https://user-images.githubusercontent.com/63131597/171745501-399ba477-9fd4-4180-98e3-4aab72a332db.PNG)
+
+![mdb-driver-dbjs](https://user-images.githubusercontent.com/63131597/171745520-47b86362-19df-4bb2-b81f-480e1d89ddb1.PNG)
+
+
