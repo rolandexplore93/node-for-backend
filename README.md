@@ -132,6 +132,7 @@ These mongodb packages were used;
 ---
 * How ObjectId() works!
 * POSTMAN - This makes the simulation of CRUD operations easy. GET, POST, DELETE and PATCH requests can also be done from POSTMAN.
-    - GET: get data from the database
+    - GET: Get data from the database
     - POST: Post data body {} to the database
     - DELETE: To delete data from the database
+    - PATCH: To update or modify existing data in the database
