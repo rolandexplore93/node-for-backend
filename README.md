@@ -130,8 +130,8 @@ These mongodb packages were used;
 ---
 > **03/June/2022**
 ---
-* How ObjectId() works!
-* POSTMAN - This makes the simulation of CRUD operations easy. GET, POST, DELETE and PATCH requests can also be done from POSTMAN.
+* How **`ObjectId()`** in mongodb works: When ObjectId() constructor receives a string, it needs to be a string of 12 bytes or 24 hex characters. So, when a string doesn't comply with this, it causes an error. Also, if a document id doesn't exist in the database but the id is valid, then mongogb will return NULL as a response
+* **POSTMAN** - This makes the simulation of CRUD operations easy. GET, POST, DELETE and PATCH requests can also be done from POSTMAN.
     - GET: Get data from the database
     - POST: Post data body {} to the database
     - DELETE: To delete data from the database
